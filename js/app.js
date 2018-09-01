@@ -1,8 +1,7 @@
 /*
  * Create a list that holds all of your cards
  */
-
-
+let cardList = deck[];
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -24,8 +23,19 @@ function shuffle(array) {
 
     return array;
 }
+// random shuffle of cards
+restart.addEventListener('click',function shuffle(cardList) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
 
+    while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
 
+    return array;);
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
