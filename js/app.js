@@ -35,20 +35,30 @@ for (i=0,i=<array.lenght,i++){
   let cardName = deckOfCards[i];
   liElement.className = 'card fa fa-' + cardName + ' hide';
   liElement.addEventListener('click', showCard);
-}
+}}
  /*  - display the card's symbol (put this functionality in another function that you call from this one)*/
 function showCard(x) {
     if (selectedCards.length < 2) {
-        x.target.classList.add('open');
-        x.target.classList.add("show");
-        x.target.removeEventListener('click', showCard);
+        x.selectedCards.classList.add('open');
+        x.seleedCards.classList.add("show");
+        x.seleedCards.removeEventListener('click', showCard);
         console.log('click');
         matchCheck(x);
         console.log(selectedCards);
     }
 }
-/*  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
-*  - if the list already has another card, check to see if the two cards match */
+/*Set the RESET button */
+var resetBut = document.getElementsByClassName('restart');
+resetBut[0].addEventListener('click',reset);
+function reset(){
+  moves=0;
+  stars=0;
+  shuffle(deckOfCards);
+  lockedCards=[];
+  selectedCards=[];
+};
+/* - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
+- if the list already has another card, check to see if the two cards match */
 function matchCheck(y){
   selectedCards.push(y);
   if (openedCards.length<2){
@@ -68,6 +78,22 @@ function matchCheck(y){
     }
   }
 }
+/*- increment the move counter and display it on the page (put this functionality in another function that you call from this one)*/
+function incrementMovement(){
+  moves=+1;
+  let movements = document.querySelector(".moves");
+  moves.innerHTML = (moves);
+  setStars();
+}
+/* -Set the stars dependingo on movements */
+function setStars(){
+  if (moves===17)
+  const star = stars.querySelector('li');
+stars.removeChild("fa fa-star");
+stars.addChild("fa fa-star-o");
+else if(moves==20){}
+else if (moves===24){}
+};
 /*    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)*/
 function guessedCards(w){
   console.log('lock cards');
@@ -79,14 +105,18 @@ function guessedCards(w){
   selectedCards[0].classList.remove("hide");
   selectedCards[1].classList.remove("hide");
   clearAllArrays();
-  if (lockedCards.length === cards.length) {
+  /*    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)*/
+  if (guessedCards.length === deckOfCards.length) {
   }}
   /* + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)*/
   function hideCards(z){
+    selectedCards[0].classList.remove("open","show");
+    selectedCards[0].classList.add("hide");
+    selectedCards[1].classList.remove("open","show");
+    selectedCards[1].classList.add("hide");
+    clearAllArrays();
   }
 function clearAllArrays(){
   selectedCards=[];
   openedCards=[];
 }
-/*    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)*/
- /*    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)*/
