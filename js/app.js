@@ -4,6 +4,10 @@
 var deckOfCards = ["diamond","diamond","paper-plane","paper-plane","bolt","bolt","cube","cube","anchor","anchor","leaf","leaf","bicycle","bicycle","bomb","bomb"];
 var clickedCards = [];
 var selectedCards = [];
+var clickedCards = [];
+var guessedCards = [];
+var openedCards = [];
+
 shuffle(deckOfCards);
 // - shuffle the list of cards using the provided "shuffle" method below
 function shuffle(array) {
@@ -39,7 +43,6 @@ function showCard(x) {
         x.target.classList.add("show");
         x.target.removeEventListener('click', showCard);
         console.log('click');
-
         matchCheck(x);
         console.log(clickedCards);
     }
@@ -65,20 +68,25 @@ function matchCheck(y){
   }
 }
 
+function hideCards(z){
+}
 
- /* var classname = document.getElementsByClassName("card");
+function guessedCards(w){
+  console.log('lock cards');
+  guessedCards.push(clickedCards[0]);
+  guessedCards.push(clickedCards[1]);
+  console.log(guessedCards);
+  clickedCards[0].classList.add('match');
+  clickedCards[1].classList.add('match');
+  clickedCards[0].classList.remove("hide");
+  clickedCards[1].classList.remove("hide");
+  clearAllArrays();
+  if (lockedCards.length === cards.length) {
+  }
 
- var myFunction = function() {
-     classname.classList.add("open");
- };
+}
 
-
-
-/*
-   const cardSelected = document.getElementsByClassName('li.card');
-document.addEventListener('click',function changeClass(){
-  cardSelected.classList.add('open');
-})
+}
  /*  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
  *  - if the list already has another card, check to see if the two cards match
  *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
