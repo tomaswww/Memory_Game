@@ -26,36 +26,34 @@ function shuffle(array) {
 /*  - loop through each card and create its HTML */
 /*  - add each card's HTML to the page */
  /* set up the event listener for a card. If a card is clicked:*/
-function displayCards(array){
-for (i=0,i=<array.lenght,i++){
-  card = array(i);
+function displayCards(){
+for (i=0,i=<deckOfCards.lenght,i++){
   let deck = document.querySelector(".deck");
-  document.createElement('li');
+  let card = document.createElement('li');
   deck.appendChild(card);
   let cardName = deckOfCards[i];
-  liElement.className = 'card fa fa-' + cardName + ' hide';
-  liElement.addEventListener('click', showCard);
+  card.className = 'card fa fa-' + cardName + ' hide';
+  card.addEventListener('click', showCard);
 }}
  /*  - display the card's symbol (put this functionality in another function that you call from this one)*/
 function showCard(x) {
     if (selectedCards.length < 2) {
         x.selectedCards.classList.add('open');
-        x.seleedCards.classList.add("show");
-        x.seleedCards.removeEventListener('click', showCard);
+        x.selectedCards.classList.add("show");
+        x.selectedCards.removeEventListener('click', showCard);
         console.log('click');
         matchCheck(x);
         console.log(selectedCards);
     }
-}
 /*Set the RESET button */
 var resetBut = document.getElementsByClassName('restart');
 resetBut[0].addEventListener('click',reset);
 function reset(){
   moves=0;
   stars=0;
-  shuffle(deckOfCards);
   lockedCards=[];
   selectedCards=[];
+  shuffle(deckOfCards);
 };
 /* - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
 - if the list already has another card, check to see if the two cards match */
