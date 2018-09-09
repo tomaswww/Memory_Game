@@ -53,6 +53,7 @@ function showCard(c) {
     stars = 0;
     lockedCards = [];
     selectedCards = [];
+    deleteCards();
     shuffle(deckOfCards);
     displayCards();
   };
@@ -122,3 +123,9 @@ function showCard(c) {
     selectedCards = [];
     openedCards = [];
   }
+
+  function deleteCards(){
+    for (let i=0;i=16;i++){
+    var cards = document.querySelector(".card");
+    cards.remove('.card');
+  }}
