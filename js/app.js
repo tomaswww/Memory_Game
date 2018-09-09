@@ -54,23 +54,24 @@ function showCard(c) {
     lockedCards = [];
     selectedCards = [];
     shuffle(deckOfCards);
+    displayCards();
   };
   /* - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
   - if the list already has another card, check to see if the two cards match */
-  function matchCheck(y) {
-    selectedCards.push(y);
+  function matchCheck(c) {
+    selectedCards.push(c.target);
     if (openedCards.length < 2) {
-      openedCards.push(y);
+    openedCards.push(c.target.className);
       if (openedCards.length===2){
-        if (openedCards[1] === openedCards[2]) {
+        if (openedCards[0] === openedCards[1]) {
           console.log('Its a match dude!');
-          incrementMovement();
-          selectedCards.push(y);
-          guessedCards(y);
+          // incrementMovement();
+          selectedCards.push((c.target));
+          guessCards(c);
         } else {
           console.log('Keep trying dude!');
-          incrementMovement();
-          hideCards(y);
+          // incrementMovement();
+          hideCards();
         }
       }
     }
@@ -92,25 +93,28 @@ function showCard(c) {
   };
   */
   /*    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)*/
-  function guessedCards(w) {
+  function guessCards(c) {
     console.log('lock cards');
     guessedCards.push(selectedCards[0]);
-    guessedCards.push(seleedCards[1]);
+    guessedCards.push(selectedCards[1]);
     console.log(guessedCards);
     selectedCards[0].classList.add('match');
     selectedCards[1].classList.add('match');
     selectedCards[0].classList.remove("hide");
     selectedCards[1].classList.remove("hide");
     clearAllArrays();
+    }
     /*    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)*/
-    if (guessedCards.length === deckOfCards.length) {}
-  }
+    // if (guessedCards.length === deckOfCards.length) {}
+
   /* + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)*/
-  function hideCards(z) {
+  function hideCards(c) {
     selectedCards[0].classList.remove("open", "show");
     selectedCards[0].classList.add("hide");
     selectedCards[1].classList.remove("open", "show");
     selectedCards[1].classList.add("hide");
+    selectedCards[0].addEventListener('click',showCard);
+    selectedCards[1].addEventListener('click',showCard);
     clearAllArrays();
   }
 
