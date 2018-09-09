@@ -3,8 +3,7 @@
  */
 var deckOfCards = ["diamond","diamond","paper-plane","paper-plane","bolt","bolt","cube","cube","anchor","anchor","leaf","leaf","bicycle","bicycle","bomb","bomb"];
 shuffle(deckOfCards);
-
-
+// - shuffle the list of cards using the provided "shuffle" method below
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
     while (currentIndex !== 0) {
@@ -15,25 +14,27 @@ function shuffle(array) {
         array[randomIndex] = temporaryValue;
     }
     return array;}
+// Shuffle function from http://stackoverflow.com/a/2450976
 
-
- /*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
-  */
-/*
-  // Shuffle function from http://stackoverflow.com/a/2450976
- restart.addEventListener('click',)
+ /* Display the cards on the page */
+ displayCards(deckOfCards);
 /*  - loop through each card and create its HTML */
-/*
+function displayCards(array){
 for (i=0,i=<array.lenght,i++){
   card = array(i);
+  let deck = document.querySelector(".deck");
+  document.createElement('li');
+  deck.appendChild(card);
+  let cardName = cards[i];
+  liElement.className = 'card fa fa-' + cardName + ' hide';
+  liElement.addEventListener('click', displayCard);
 }
 /*  - add each card's HTML to the page */
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)*/
- var classname = document.getElementsByClassName("card");
+
+ /* var classname = document.getElementsByClassName("card");
 
  var myFunction = function() {
      classname.classList.add("open");
