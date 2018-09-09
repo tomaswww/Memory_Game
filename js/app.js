@@ -2,6 +2,8 @@
  * Create a list that holds all of your cards
  */
 var deckOfCards = ["diamond","diamond","paper-plane","paper-plane","bolt","bolt","cube","cube","anchor","anchor","leaf","leaf","bicycle","bicycle","bomb","bomb"];
+var clickedCards = [];
+var selectedCards = [];
 shuffle(deckOfCards);
 // - shuffle the list of cards using the provided "shuffle" method below
 function shuffle(array) {
@@ -15,24 +17,54 @@ function shuffle(array) {
     }
     return array;}
 // Shuffle function from http://stackoverflow.com/a/2450976
-
  /* Display the cards on the page */
  displayCards(deckOfCards);
 /*  - loop through each card and create its HTML */
+/*  - add each card's HTML to the page */
+ /* set up the event listener for a card. If a card is clicked:*/
 function displayCards(array){
 for (i=0,i=<array.lenght,i++){
   card = array(i);
   let deck = document.querySelector(".deck");
   document.createElement('li');
   deck.appendChild(card);
-  let cardName = cards[i];
+  let cardName = deckOfCards[i];
   liElement.className = 'card fa fa-' + cardName + ' hide';
-  liElement.addEventListener('click', displayCard);
+  liElement.addEventListener('click', showCard);
 }
-/*  - add each card's HTML to the page */
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)*/
+ /*  - display the card's symbol (put this functionality in another function that you call from this one)*/
+function showCard(x) {
+    if (clickedCards.length < 2) {
+        x.target.classList.add('open');
+        x.target.classList.add("show");
+        x.target.removeEventListener('click', showCard);
+        console.log('click');
+
+        matchCheck(x);
+        console.log(clickedCards);
+    }
+
+}
+function matchCheck(y){
+  selectedCards.push(y);
+  if (openedCards.length<2){
+    openedCards.push(y);
+    if openedCards.length===2{
+      if (openedCards[1]===openedCards[2]){
+        console.log('Its a match dude!');
+        incrementMovement();
+        clickedCards.push(y);
+        guessedCards(y);
+      }
+      else {
+        console.log('Keep trying dude!');
+        incrementMovement();
+        hideCards(y);
+      }
+    }
+  }
+}
+
 
  /* var classname = document.getElementsByClassName("card");
 
