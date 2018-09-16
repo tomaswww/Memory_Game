@@ -3,7 +3,7 @@ var deckOfCards = ["diamond", "diamond", "paper-plane", "paper-plane", "bolt", "
 var selectedCards = [];
 var guessedCards = [];
 var openedCards = [];
-var moves = 0;
+var movements = 0;
 var totalStars = 3;
 /* Display the cards on the page */
 shuffle(deckOfCards);
@@ -79,36 +79,35 @@ function matchCheck(c) {
 }
 /*- increment the move counter and display it on the page (put this functionality in another function that you call from this one)*/
 function incrementMovement() {
-  move = +1;
-  let movements = document.querySelector(".moves");
-  moves.innerHTML = (move);
-  //setStars();
+  movements++;
+  let movesSelected = document.querySelector(".moves");
+  movesSelected.innerHTML = (movements);
+  setStars();
 }
 /* -Set the stars dependingo on movements */
 function setStars() {
-  if (moves === 17){
-    totalStars=2;
-let fStar= document.getElementsByClassName("stars");
-fstar.removeChild("fa fa-star");
+  if (movements === 7){
+    totalStars===2;
+var fStar= document.querySelector(".stars");
+fStar.removeChild(".fa fa-star");
 let newStar="";
 newStar.className="fa fa-star-o";
 fStar.appendChild("newStar");}
-if (moves === 21){
+if (movements === 21){
   totalStars=1;
 let fStar= document.getElementsByClassName("stars");
-fstar.removeChild("fa fa-star");
+fStar.removeChild("fa fa-star");
 let newStar="";
 newStar.className="fa fa-star-o";
 fStar.appendChild("newStar");}
-if (moves === 30){
+if (movements === 30){
   totalStars=0;
 let fStar= document.getElementsByClassName("stars");
-fstar.removeChild("fa fa-star");
+fStar.removeChild("fa fa-star");
 let newStar="";
 newStar.className="fa fa-star-o";
 fStar.appendChild("newStar");
-}
-}
+}}
 /*    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)*/
 function guessCards(c) {
   console.log("locking cards");
@@ -120,8 +119,8 @@ function guessCards(c) {
   selectedCards[0].classList.remove("hide");
   selectedCards[1].classList.remove("hide");
   /*    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)*/
-  // if (guessedCards.length === deckOfCards.length) {}
-  if (guessCards.length === deckOfCards.lenght) {
+  // if (guessedCards.length === deckOfCards.length)
+  if (guessedCards.length === deckOfCards.lenght) {
     winmessage();
   }
 else {
