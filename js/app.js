@@ -67,7 +67,6 @@ function matchCheck(c) {
       if (openedCards[0] === openedCards[1]) {
         console.log("Its a match dude!");
         incrementMovement();
-        selectedCards.push((c.target));
         guessCards(c);
       } else {
         console.log("Keep trying dude!");
@@ -84,30 +83,36 @@ function incrementMovement() {
   movesSelected.innerHTML = (movements);
   setStars();
 }
-/* -Set the stars dependingo on movements */
+/* -Set the stars depending on movements */
 function setStars() {
-  if (movements === 7){
-    totalStars===2;
-var fStar= document.querySelector(".stars");
-fStar.removeChild(".fa fa-star");
-let newStar="";
+  if (movements === 17){
+    totalStars=2;
+let fStar= document.querySelector("#firstStar");
+fStar.remove();
+let starsUl = document.querySelector(".stars");
+let newStar = document.createElement("li");
 newStar.className="fa fa-star-o";
-fStar.appendChild("newStar");}
-if (movements === 21){
+starsUl.appendChild(newStar);
+}
+else if (movements === 21){
   totalStars=1;
-let fStar= document.getElementsByClassName("stars");
-fStar.removeChild("fa fa-star");
-let newStar="";
+let fStar= document.querySelector("#secondStar");
+fStar.remove();
+let starsUl = document.querySelector(".stars");
+let newStar = document.createElement("li");
 newStar.className="fa fa-star-o";
-fStar.appendChild("newStar");}
-if (movements === 30){
+starsUl.appendChild(newStar);
+}
+else if (movements === 25){
   totalStars=0;
-let fStar= document.getElementsByClassName("stars");
-fStar.removeChild("fa fa-star");
-let newStar="";
+let fStar= document.querySelector("#thirdStar");
+fStar.remove();
+let starsUl = document.querySelector(".stars");
+let newStar = document.createElement("li");
 newStar.className="fa fa-star-o";
-fStar.appendChild("newStar");
+starsUl.appendChild(newStar);
 }}
+
 /*    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)*/
 function guessCards(c) {
   console.log("locking cards");
@@ -118,14 +123,15 @@ function guessCards(c) {
   selectedCards[1].classList.add("match");
   selectedCards[0].classList.remove("hide");
   selectedCards[1].classList.remove("hide");
+  clearAllArrays();
   /*    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)*/
   // if (guessedCards.length === deckOfCards.length)
-  if (guessedCards.length === deckOfCards.lenght) {
+  if (guessedCards.length === deckOfCards.length) {
     winmessage();
   }
 else {
-  console.log("one less to go dude!");
-}}
+  console.log("one less to go dude!");}
+}
 //winning message function
 function winmessage() {
   console.log("you won!!");
