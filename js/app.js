@@ -47,16 +47,17 @@ function showCard(c) {
   }
 }
 /*Set the RESET button */
-// var resetBut = document.getElementsByClassName('restart');
-// resetBut[0].addEventListener('click', reset);
-// function reset() {
-//   moves = 0;
-//   stars = 0;
-//   clearAllArrays();
-//   deleteCards(deckOfCards);
-//   shuffle(deckOfCards);
-//   displayCards();
-// };
+var resetBut = document.getElementsByClassName('restart');
+resetBut[0].addEventListener('click', reset);
+/*Set the reset function*/
+function reset() {
+  movements = 0;
+  totalStarstars = 0;
+  clearAllArrays();
+  deleteCards();
+  shuffle(deckOfCards);
+  displayCards();
+};
 /* - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
 - if the list already has another card, check to see if the two cards match */
 function matchCheck(c) {
@@ -85,33 +86,32 @@ function incrementMovement() {
 }
 /* -Set the stars depending on movements */
 function setStars() {
-  if (movements === 17){
-    totalStars=2;
-let fStar= document.querySelector("#firstStar");
-fStar.remove();
-let starsUl = document.querySelector(".stars");
-let newStar = document.createElement("li");
-newStar.className="fa fa-star-o";
-starsUl.appendChild(newStar);
+  if (movements === 17) {
+    totalStars = 2;
+    let fStar = document.querySelector("#firstStar");
+    fStar.remove();
+    let starsUl = document.querySelector(".stars");
+    let newStar = document.createElement("li");
+    newStar.className = "fa fa-star-o";
+    starsUl.appendChild(newStar);
+  } else if (movements === 21) {
+    totalStars = 1;
+    let fStar = document.querySelector("#secondStar");
+    fStar.remove();
+    let starsUl = document.querySelector(".stars");
+    let newStar = document.createElement("li");
+    newStar.className = "fa fa-star-o";
+    starsUl.appendChild(newStar);
+  } else if (movements === 25) {
+    totalStars = 0;
+    let fStar = document.querySelector("#thirdStar");
+    fStar.remove();
+    let starsUl = document.querySelector(".stars");
+    let newStar = document.createElement("li");
+    newStar.className = "fa fa-star-o";
+    starsUl.appendChild(newStar);
+  }
 }
-else if (movements === 21){
-  totalStars=1;
-let fStar= document.querySelector("#secondStar");
-fStar.remove();
-let starsUl = document.querySelector(".stars");
-let newStar = document.createElement("li");
-newStar.className="fa fa-star-o";
-starsUl.appendChild(newStar);
-}
-else if (movements === 25){
-  totalStars=0;
-let fStar= document.querySelector("#thirdStar");
-fStar.remove();
-let starsUl = document.querySelector(".stars");
-let newStar = document.createElement("li");
-newStar.className="fa fa-star-o";
-starsUl.appendChild(newStar);
-}}
 
 /*    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)*/
 function guessCards(c) {
@@ -128,9 +128,9 @@ function guessCards(c) {
   // if (guessedCards.length === deckOfCards.length)
   if (guessedCards.length === deckOfCards.length) {
     winmessage();
+  } else {
+    console.log("one less to go dude!");
   }
-else {
-  console.log("one less to go dude!");}
 }
 //winning message function
 function winmessage() {
@@ -152,8 +152,14 @@ function clearAllArrays() {
   openedCards = [];
 }
 
-//   function deleteCards(){
-//     for (let i = 0 ;i<= deckOfCards.length;i++){
-//       let deckSelected = document.querySelector(".deck");
-//     deckSelected.removeChild(deckSelected.firstChild);
-// }}
+function deleteCards() {
+  for (let i = 0; i < deckOfCards.length; i++) {
+    let deckSelected = document.querySelector(".deck");
+    let oldCard = deckSelected.querySelector(".card");
+      oldCard.remove();
+  }
+  movements=0;
+  let movesSelected = document.querySelector(".moves");
+  movesSelected.innerHTML = (movements);
+  setStars();
+}
