@@ -51,8 +51,6 @@ var resetBut = document.getElementsByClassName('restart');
 resetBut[0].addEventListener('click', reset);
 /*Set the reset function*/
 function reset() {
-  movements = 0;
-  totalStarstars = 0;
   clearAllArrays();
   deleteCards();
   shuffle(deckOfCards);
@@ -86,13 +84,37 @@ function incrementMovement() {
 }
 /* -Set the stars depending on movements */
 function setStars() {
-  if (movements === 17) {
+  if (movements === 0) {
+   totalStars = 3;
+   let fStar = document.querySelector("#firstStar");
+   fStar.remove();
+   let starsUl = document.querySelector(".stars");
+   let newStar = document.createElement("li");
+   newStar.className = "fa fa-star";
+   newStar.id="firstStar";
+   starsUl.appendChild(newStar);
+   let sStar = document.querySelector("#secondStar");
+   sStar.remove();
+   let starsUl2 = document.querySelector(".stars");
+   let newStar2 = document.createElement("li");
+   newStar2.className = "fa fa-star";
+   newStar2.id="secondStar";
+   starsUl.appendChild(newStar2);
+   let tStar = document.querySelector("#thirdStar");
+   tStar.remove();
+   let starsUl3 = document.querySelector(".stars");
+   let newStar3 = document.createElement("li");
+   newStar3.className = "fa fa-star";
+   newStar3.id="thirdStar";
+   starsUl.appendChild(newStar3);}
+   else if (movements === 4) {
     totalStars = 2;
     let fStar = document.querySelector("#firstStar");
     fStar.remove();
     let starsUl = document.querySelector(".stars");
     let newStar = document.createElement("li");
     newStar.className = "fa fa-star-o";
+    newStar.id="firstStar";
     starsUl.appendChild(newStar);
   } else if (movements === 21) {
     totalStars = 1;
@@ -101,6 +123,7 @@ function setStars() {
     let starsUl = document.querySelector(".stars");
     let newStar = document.createElement("li");
     newStar.className = "fa fa-star-o";
+    newStar.id="secondStar";
     starsUl.appendChild(newStar);
   } else if (movements === 25) {
     totalStars = 0;
@@ -109,6 +132,7 @@ function setStars() {
     let starsUl = document.querySelector(".stars");
     let newStar = document.createElement("li");
     newStar.className = "fa fa-star-o";
+    newStar.id="thirdStar";
     starsUl.appendChild(newStar);
   }
 }
@@ -156,8 +180,7 @@ function deleteCards() {
   for (let i = 0; i < deckOfCards.length; i++) {
     let deckSelected = document.querySelector(".deck");
     let oldCard = deckSelected.querySelector(".card");
-      oldCard.remove();
-  }
+      oldCard.remove();}
   movements=0;
   let movesSelected = document.querySelector(".moves");
   movesSelected.innerHTML = (movements);
