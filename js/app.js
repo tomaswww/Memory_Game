@@ -57,6 +57,7 @@ function reset() {
   deleteCards();
   shuffle(deckOfCards);
   displayCards();
+  guessedCards=[];
 };
 /* - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
 - if the list already has another card, check to see if the two cards match */
@@ -76,7 +77,6 @@ function matchCheck(c) {
           console.log("wait for it");
           hideCards(c);
         },delay);
-
       }
     }
   }
@@ -113,7 +113,7 @@ function setStars() {
    newStar3.className = "fa fa-star";
    newStar3.id="thirdStar";
    starsUl.appendChild(newStar3);}
-   else if (movements === 4) {
+   else if (movements === 14) {
     totalStars = 2;
     let fStar = document.querySelector("#firstStar");
     fStar.remove();
@@ -131,7 +131,7 @@ function setStars() {
     newStar.className = "fa fa-star-o";
     newStar.id="secondStar";
     starsUl.appendChild(newStar);
-  } else if (movements === 25) {
+  } else if (movements === 24) {
     totalStars = 0;
     let fStar = document.querySelector("#thirdStar");
     fStar.remove();
@@ -164,7 +164,7 @@ function guessCards(c) {
 }
 //winning message function
 function winmessage() {
-  console.log("you won!! with "+movements+" moves, and "+totalStars+" stars!!");
+  if (window.confirm("you won!! with "+movements+" moves, and "+totalStars+" stars!. Do you want to play again?")){reset()};
 }
 /* + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)*/
 function hideCards(c) {
