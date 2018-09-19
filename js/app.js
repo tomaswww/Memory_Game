@@ -5,6 +5,8 @@ var guessedCards = [];
 var openedCards = [];
 var movements = 0;
 var totalStars = 3;
+/*Delay second card after hiding*/
+var delay= 800;
 /* Display the cards on the page */
 shuffle(deckOfCards);
 displayCards();
@@ -70,7 +72,11 @@ function matchCheck(c) {
       } else {
         console.log("Keep trying dude!");
         incrementMovement();
-        hideCards();
+        setTimeout(function wait(){
+          console.log("wait for it");
+          hideCards(c);
+        },delay);
+
       }
     }
   }
@@ -158,7 +164,7 @@ function guessCards(c) {
 }
 //winning message function
 function winmessage() {
-  console.log("you won!!");
+  console.log("you won!! with "+movements+" moves, and "+totalStars+" stars!!");
 }
 /* + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)*/
 function hideCards(c) {
