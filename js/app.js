@@ -10,7 +10,7 @@ var delay= 800;
 var second=1000;
 var sec=0;
 var min=0;
-const startTime = Date.now();
+var startTime = Date.now();
 /* Display the cards on the page */
 shuffle(deckOfCards);
 displayCards();
@@ -66,9 +66,7 @@ var resetBut = document.getElementsByClassName('restart');
 resetBut[0].addEventListener('click', reset);
 /*Set the reset function*/
 function reset() {
-  var min=0;
-  var sec=0;
-  var startTime = Date.now();
+  startTime = Date.now();
   clearAllArrays();
   deleteCards();
   shuffle(deckOfCards);
@@ -184,7 +182,8 @@ function winmessage() {
   const elapsedSeconds = elapsedTime/1000;
   const sec = (elapsedSeconds%60).toFixed(0);
   const min = ((elapsedSeconds-sec)/60).toFixed(0);
-  if (window.confirm("you won!! with "+movements+" moves, and "+totalStars+" stars! in just "+min+" minutes and "+sec+" seconds. Do you want to play again?")){reset()};
+  if (window.confirm("you won!! with "+movements+" moves, and "+totalStars+" stars! in just "+min+" minutes and "+sec+" seconds. Do you want to play again?")){reset();
+  };
 }
 /* + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)*/
 function hideCards(c) {
