@@ -10,6 +10,7 @@ var delay= 800;
 var second=1000;
 var sec=0;
 var min=0;
+let timeSpent=0;
 // var startTime = Date.now();
 /* Display the cards on the page */
 shuffle(deckOfCards);
@@ -27,7 +28,7 @@ function gameTime(){
   },1000);
   return timeSpent;
 }
-function stopCounting(timeSpent){
+function stopCounting(){
   clearInterval(timeSpent);
 }
 // - shuffle the list of cards using the provided "shuffle" method below
@@ -178,7 +179,7 @@ function guessCards(c) {
   /*    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)*/
   // if (guessedCards.length === deckOfCards.length)
   if (guessedCards.length === deckOfCards.length) {
-    stopCounting(timeSpent);
+    stopCounting();
     winmessage();
   } else {
     console.log("one less to go dude!");
