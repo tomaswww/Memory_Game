@@ -10,19 +10,26 @@ var delay= 800;
 var second=1000;
 var sec=0;
 var min=0;
-var startTime = Date.now();
+// var startTime = Date.now();
 /* Display the cards on the page */
 shuffle(deckOfCards);
 displayCards();
-
-// function setTimer(){
-// const elapsedTime = Date.now() - startTime;
-// const elapsedSeconds = elapsedTime/1000;
-// var sec = elapsedSeconds%60;
-// var min = elapsedSeconds/60;
-// let chronometer = document.querySelector(".time");
-// chronometer.innerHTML = ("in "+min+" min:"+sec+" sec");}
-
+gameTime();
+// sets up timer
+function gameTime(){
+  timeElapsed=0;
+  let timeSpent = setInterval(function(){
+    timeElapsed++;
+    sec = (timeElapsed%60).toFixed(0);
+    min = ((timeElapsed-sec)/60).toFixed(0);
+    let chronometer = document.querySelector(".time");
+    chronometer.innerHTML = ("in "+min+" min: "+sec+" sec")
+  },1000);
+  return timeSpent;
+}
+function stopCounting(timeSpent){
+  clearInterval(timeSpent);
+}
 // - shuffle the list of cards using the provided "shuffle" method below
 function shuffle(array) {
   var currentIndex = array.length,
@@ -66,7 +73,7 @@ var resetBut = document.getElementsByClassName('restart');
 resetBut[0].addEventListener('click', reset);
 /*Set the reset function*/
 function reset() {
-  startTime = Date.now();
+  timeElapsed=0;
   clearAllArrays();
   deleteCards();
   shuffle(deckOfCards);
@@ -171,6 +178,7 @@ function guessCards(c) {
   /*    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)*/
   // if (guessedCards.length === deckOfCards.length)
   if (guessedCards.length === deckOfCards.length) {
+    stopCounting(timeSpent);
     winmessage();
   } else {
     console.log("one less to go dude!");
@@ -178,10 +186,6 @@ function guessCards(c) {
 }
 //winning message function
 function winmessage() {
-  const elapsedTime = Date.now() - startTime;
-  const elapsedSeconds = elapsedTime/1000;
-  const sec = (elapsedSeconds%60).toFixed(0);
-  const min = ((elapsedSeconds-sec)/60).toFixed(0);
   if (window.confirm("you won!! with "+movements+" moves, and "+totalStars+" stars! in just "+min+" minutes and "+sec+" seconds. Do you want to play again?")){reset();
   };
 }
