@@ -110,7 +110,7 @@ function incrementMovement() {
   movesSelected.innerHTML = (movements);
   setStars();
 }
-/* -Set the stars depending on movements */
+/* -Set the stars depending on movements (I think this probably could be optimized to occupy less code lines, but I need to think it over) */
 function setStars() {
   if (movements === 0) {
    totalStars = 3;
@@ -182,7 +182,7 @@ function guessCards(c) {
     stopCounting();
     winmessage();
   } else {
-    console.log("one less to go dude!");
+    console.log("one less to go!");
   }
 }
 //winning message function
@@ -208,7 +208,7 @@ function clearAllArrays() {
   selectedCards = [];
   openedCards = [];
 }
-
+//Deletes all the cards for new Game
 function deleteCards() {
   for (let i = 0; i < deckOfCards.length; i++) {
     let deckSelected = document.querySelector(".deck");
