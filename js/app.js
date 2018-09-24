@@ -171,8 +171,8 @@ function guessCards(c) {
   guessedCards.push(selectedCards[0]);
   guessedCards.push(selectedCards[1]);
   console.log(guessedCards);
-  selectedCards[0].classList.add("match");
-  selectedCards[1].classList.add("match");
+  selectedCards[0].classList.add("match","animated","flash");
+  selectedCards[1].classList.add("match","animated","flash");
   selectedCards[0].classList.remove("hide");
   selectedCards[1].classList.remove("hide");
   clearAllArrays();
@@ -192,14 +192,17 @@ function winmessage() {
 }
 /* + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)*/
 function hideCards(c) {
-  selectedCards[0].classList.remove("open", "show");
+  selectedCards[0].classList.add("animated","bounce");
+  selectedCards[1].classList.add("animated","bounce");
+  setTimeout(function bounceTimeout(){
+  selectedCards[0].classList.remove("open", "show", "animated","bounce");
   selectedCards[0].classList.add("hide");
-  selectedCards[1].classList.remove("open", "show");
+  selectedCards[1].classList.remove("open", "show", "animated","bounce");
   selectedCards[1].classList.add("hide");
   selectedCards[0].addEventListener("click", showCard);
   selectedCards[1].addEventListener("click", showCard);
   clearAllArrays();
-}
+},delay)};
 
 function clearAllArrays() {
   selectedCards = [];
